@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - María Florencia Cardozo | Interior Decorator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #ECF0F1;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495E 100%);
+            color: var(--white);
+            padding: 60px 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInScale 1s ease-out;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container i {
+            font-size: 80px;
+            color: var(--white);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .header h2 {
+            font-size: 1.3em;
+            font-weight: 300;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            font-size: 0.95em;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-item i {
+            color: var(--secondary-color);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+        }
+
+        .btn-download {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-download:hover {
+            background: #C0392B;
+            transform: scale(1.1);
+        }
+
+        /* Content Section */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+            font-size: 0.9em;
+        }
+
+        .about-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Experience & Education Cards */
+        .card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1));
+            transition: width 0.3s ease;
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-date {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .card-description {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .card-reference {
+            color: var(--text-light);
+            font-size: 0.85em;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .skill-item i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .skill-item:hover i {
+            color: var(--white);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .skill-level {
+            font-size: 0.9em;
+            color: var(--text-light);
+        }
+
+        .skill-item:hover .skill-level {
+            color: var(--white);
+        }
+
+        /* Languages */
+        .languages-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .language-badge {
+            background: linear-gradient(135deg, var(--accent-color), #2980B9);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .language-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .action-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: var(--white);
+            z-index: 2000;
+        }
+
+        .loading.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cv-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="photo-container">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>MARÍA FLORENCIA CARDOZO</h1>
+            <h2>INTERIOR DECORATOR</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>3764-634706</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>cardozomf94@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Posadas, Misiones</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Sobre Mí -->
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-user-circle"></i>
+                    SOBRE MÍ
+                </h3>
+                <p class="about-text">
+                    ¡Hola! Mi nombre es Florencia. Me considero una persona sumamente trabajadora y responsable. 
+                    Soy muy exigente conmigo misma en el área laboral. Me adapto y aprendo rápido nuevos procedimientos 
+                    de trabajo. Tengo amplia experiencia en atención al cliente, en el sector comercial y manejo de dinero. 
+                    Tengo ganas de crecer y de ofrecer mi experiencia, dedicación y responsabilidad, traducidas en ganas 
+                    de trabajar, a fin de lograr objetivos conjuntos, tanto de la organización como personales. 
+                    Poseo disponibilidad horaria full time.
+                </p>
+            </div>
+
+            <!-- Experiencia -->
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    EXPERIENCIA LABORAL
+                </h3>
+
+                <div class="card">
+                    <div class="card-title">Prevención Salud – Grupo Sancor Seguros</div>
+                    <div class="card-subtitle">Asesora Comercial</div>
+                    <div class="card-date">Abril 2024 - Actualidad</div>
+                    <div class="card-description">
+                        Asesoramiento y venta de planes de medicina privada prepaga por medios digitales y de manera 
+                        presencial. Gestión de la venta, seguimiento en posventa. Atención al cliente.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Servicios Urbanos S.A</div>
+                    <div class="card-subtitle">Sube Misionero – Terminales de Transferencia – Billetera SUSA</div>
+                    <div class="card-date">Julio 2019 - Marzo 2024</div>
+                    <div class="card-description">
+                        Atención al cliente en la oficina de Sube Misionero y recarga de la tarjeta SUBE. 
+                        Boletería en Terminales de Transferencia. Desde abril 2022 hasta agosto 2023 fui responsable 
+                        de la recaudación de la oficina de Sube Misionero en el Posadas Plaza Shopping. 
+                        Desde Septiembre 2023 hasta marzo 2024 me desempeñé en la Terminal de Transferencia Quaranta. 
+                        Viajé a la ciudad de Oberá para colaborar con la implementación del nuevo sistema de pago del 
+                        boleto del transporte público. He atravesado auditorías de Normas ISO e IRAM.
+                    </div>
+                    <div class="card-reference">
+                        Referencias: Maximiliano Villalba 3764241216 | Micaela de Cuadra 3764522592
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Casanova</div>
+                    <div class="card-subtitle">Encargada Caja Central</div>
+                    <div class="card-date">Junio - Julio 2019</div>
+                    <div class="card-description">
+                        Encargada del manejo y control de caja. Administración de personal.
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Nicolás Fernández 3764655335
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Credisi! S.R.L</div>
+                    <div class="card-subtitle">Administración y Venta de Tarjetas de Crédito</div>
+                    <div class="card-date">Octubre - Diciembre 2018</div>
+                    <div class="card-description">
+                        Realizaba llamadas con el objetivo de ofrecer la tarjeta de crédito de la entidad y facilitar 
+                        refinanciamientos de deudas para los clientes existentes. Comercializaba los diferentes productos 
+                        de la organización. Colaboradora en el área administrativa.
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Victor Cravero 3764571882
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Citroën Seewald Automóviles S.A</div>
+                    <div class="card-subtitle">Venta de Plan de Ahorro</div>
+                    <div class="card-date">Mayo - Julio 2018</div>
+                    <div class="card-description">
+                        Venta de Plan de Ahorro de automóviles en stand fijo en el Hipermercado Libertad, 
+                        Concesionaria y stand móviles mediante viajes al interior de la provincia.
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Joana García 3764514608
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Chery Alcaraz S.A</div>
+                    <div class="card-subtitle">Venta de Plan de Ahorro</div>
+                    <div class="card-date">Noviembre 2017 - Mayo 2018</div>
+                    <div class="card-description">
+                        Venta de Plan de Ahorro de automóviles en stand fijo en el Hipermercado Libertad, 
+                        Concesionaria y stand móviles mediante viajes al interior de la provincia.
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Noemí Botello 3764377887
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Claro – Saysuf Comunicaciones</div>
+                    <div class="card-subtitle">Atención Local Comercial</div>
+                    <div class="card-date">Enero - Noviembre 2017</div>
+                    <div class="card-description">
+                        Atención al cliente en salón comercial. Manejo de caja. Reposición de stock. 
+                        Auxiliar en ventas y portabilidades en terreno.
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Natalia Ibañez 3764246947
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Claro – Saysuf Comunicaciones</div>
+                    <div class="card-subtitle">Ventas en Terreno</div>
+                    <div class="card-date">Noviembre - Diciembre 2016</div>
+                    <div class="card-description">
+                        Venta de portabilidades, planes de abono y celulares en terreno (Puerta a Puerta).
+                    </div>
+                    <div class="card-reference">
+                        Referencia: Jorge Godoy 3764280973
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educación -->
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    EDUCACIÓN
+                </h3>
+
+                <div class="card">
+                    <div class="card-title">Licenciatura en Comunicación Social</div>
+                    <div class="card-subtitle">Universidad Nacional de Misiones - FHyCS</div>
+                    <div class="card-date">2022 - Actualmente en pausa</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Técnica en Comunicación Social</div>
+                    <div class="card-subtitle">Universidad Nacional de Misiones - FHyCS</div>
+                    <div class="card-date">2013 - 2015</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Estudios Primarios y Secundarios</div>
+                    <div class="card-subtitle">Instituto San Alberto Magno</div>
+                    <div class="card-date">Posadas, Misiones</div>
+                </div>
+            </div>
+
+            <!-- Habilidades -->
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-star"></i>
+                    HABILIDADES
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-users"></i>
+                        <div class="skill-title">Atención al Cliente</div>
+                        <div class="skill-level">Experto</div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="skill-title">Ventas</div>
+                        <div class="skill-level">Avanzado</div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-cash-register"></i>
+                        <div class="skill-title">Manejo de Caja</div>
+                        <div class="skill-level">Experto</div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-tasks"></i>
+                        <div class="skill-title">Administración</div>
+                        <div class="skill-level">Avanzado</div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="skill-title">Adaptabilidad</div>
+                        <div class="skill-level">Experto</div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-handshake"></i>
+                        <div class="skill-title">Trabajo en Equipo</div>
+                        <div class="skill-level">Avanzado</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Idiomas -->
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-language"></i>
+                    IDIOMAS
+                </h3>
+                <div class="languages-container">
+                    <div class="language-badge">
+                        <i class="fas fa-flag-usa"></i>
+                        <div>
+                            <div>Inglés</div>
+                            <small>Nivel Básico</small>
+                        </div>
+                    </div>
+                    <div class="language-badge">
+                        <i class="fas fa-flag"></i>
+                        <div>
+                            <div>Portugués</div>
+                            <small>Nivel Avanzado (Certificado CACUBRA)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 María Florencia Cardozo | Curriculum Vitae</p>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-whatsapp" onclick="openWhatsApp()" title="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <button class="btn btn-download" onclick="downloadPDF()" title="Descargar CV en PDF">
+            <i class="fas fa-download"></i>
+        </button>
+    </div>
+
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+
+    <script>
+        function openWhatsApp() {
+            const phone = '5493764634706';
+            const message = encodeURIComponent('Hola Florencia, vi tu CV y me gustaría contactarte.');
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        function downloadPDF() {
+            const loading = document.getElementById('loading');
+            const buttons = document.querySelector('.action-buttons');
+            
+            loading.classList.add('active');
+            buttons.style.display = 'none';
+
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0,
+                filename: 'CV_Florencia_Cardozo.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                loading.classList.remove('active');
+                buttons.style.display = 'flex';
+            });
+        }
+
+        // Animación de entrada para las secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
